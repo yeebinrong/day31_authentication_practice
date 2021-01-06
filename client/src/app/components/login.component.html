@@ -1,0 +1,24 @@
+<div fxFill fxLayout="column">
+    <div fxFlex fxLayout="row" class="m-1" fxLayoutAlign="center stretch">
+        <mat-card fxFlex="70" fxLayout="column" class="mb-1">
+            <div class="text-center lg-text mb-1 mt-1">
+                <h1>Login Page</h1>
+            </div>
+            <form [formGroup]="form" fxLayout="column">
+                <mat-form-field appearance="outline"> <!-- Name Input -->
+                    <input type="text" matInput formControlName="username" placeholder="Your username.">
+                    <!-- <mat-error *ngIf="form.get('username').hasError('required')">Please enter a username.</mat-error> -->
+                    <mat-error>Please enter a username.</mat-error>
+                </mat-form-field>
+                <mat-form-field appearance="outline"> <!-- Password Input -->
+                    <input  [type]="hide ? 'password' : 'text'" matInput formControlName="password" placeholder="Your password." autocomplete="off">
+                    <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                    <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                    </button>
+                    <mat-error>Please enter a password.</mat-error>
+                </mat-form-field>
+                <button type="button" (click)="onSubmit()" mat-raised-button [disabled]="form.invalid" color="accent">Submit</button>
+            </form>
+        </mat-card>
+    </div>
+</div>

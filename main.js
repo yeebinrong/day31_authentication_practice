@@ -81,7 +81,7 @@ const mkAuth = (passport) => {
                 if (null != err) {
                     resp.status(401)
                     resp.type('application/json')
-                    resp.json({ error: err })
+                    resp.json({ message: err })
                     return
                 }
                 if (!user) {
@@ -106,6 +106,9 @@ const QUERY_SELECT_USER_PASS_WITH_USER = mkQuery(SELECT_USER_PASS_WITH_USER, POO
 // log requests with morgan
 app.use(morgan('combined'))
 
+// use cors headers
+app.use(cors())
+
 // parse json and urlencoded
 app.use(express.json())
 app.use(express.urlencoded({extended:true}))
@@ -113,12 +116,11 @@ app.use(express.urlencoded({extended:true}))
 // initialise passport (must be done after parsing  json / urlencoded)
 app.use(passport.initialize())
 
-app.post('/login',
+app.post('/api/login',
     // passport middleware to perform login
     // passport.authenticate('local', {session: false}),
     localStrategyAuth,
     (req, resp) => {
-        console.info(`user: ${req.user.username}`)
         const currTime = (new Date()).getTime() / 1000
         const token = jwt.sign({
             sub: req.user.username,
