@@ -1,1 +1,18 @@
-<p>main works!</p>
+<div fxFill fxLayout="column">
+    <div fxFlex fxLayout="row" class="m-1" fxLayoutAlign="center stretch">
+        <mat-card fxFlex="70" fxLayout="column" class="mb-1">
+            <div class="text-center lg-text mb-1 mt-1">
+                <h1>Main</h1>
+            </div>
+            <form [formGroup]="form" fxLayout="column">
+                <mat-form-field appearance="outline"> <!-- Name Input -->
+                    <input type="text" matInput formControlName="value" placeholder="Your value.">
+                    <!-- <mat-error *ngIf="form.get('username').hasError('required')">Please enter a value.</mat-error> -->
+                    <mat-error>Please enter a value.</mat-error>
+                </mat-form-field>
+                <button type="button" (click)="onSubmit()" mat-raised-button [disabled]="form.invalid" color="accent">Submit</button>
+                <button class="mt-1" type="button" [routerLink]="['/']" mat-raised-button color="warn">Back</button>
+            </form>
+        </mat-card>
+    </div>
+</div>

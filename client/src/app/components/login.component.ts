@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { ApiService } from '../api.service';
 import { AuthService } from '../auth.service';
 
@@ -13,7 +14,7 @@ export class LoginComponent implements OnInit {
   form:FormGroup
   hide:boolean = true // hide password
 
-  constructor(private fb:FormBuilder, private apiSvc:ApiService, private authSvc:AuthService) { }
+  constructor(private fb:FormBuilder, private router:Router, private authSvc:AuthService) { }
 
   ngOnInit(): void {
     this.createForm();

@@ -13,13 +13,16 @@ import { HttpClientModule } from '@angular/common/http';
 import { MainComponent } from './components/main.component';
 import { LoginComponent } from './components/login.component';
 import { AuthService } from './auth.service';
+import { ErrorComponent } from './components/error.component';
+import { DeauthService } from './deauth.service';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     MainComponent,
-    LoginComponent
+    LoginComponent,
+    ErrorComponent
   ],
   imports: [
     BrowserModule,
@@ -31,7 +34,7 @@ import { AuthService } from './auth.service';
     FlexLayoutModule,
     HttpClientModule,
   ],
-  providers: [ApiService, AuthService],
+  providers: [ApiService, AuthService, DeauthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
